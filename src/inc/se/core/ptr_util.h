@@ -197,7 +197,7 @@
  * @return `true`, если указатель выровнен, иначе `false`.
  * @note `align` не должно быть нулевым.
  */
-#define se_ptr_check_alignment(ptr, align) se_addr_is_aligned(se_ptr_get_addr(ptr), align)
+#define se_ptr_check_alignment(ptr, align) se_addr_check_alignment(se_ptr_get_addr(ptr), align)
 
 /**
  * @def se_ptr_align_upward

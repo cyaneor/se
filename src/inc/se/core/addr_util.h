@@ -51,7 +51,7 @@
 #define se_addr_diff(addr1, addr2) (addr1 - addr2)
 
 /**
- * @def se_addr_is_aligned
+ * @def se_addr_check_alignment
  * @brief Проверяет, выровнен ли адрес по заданному выравниванию.
  *
  * Этот макрос проверяет, является ли заданный адрес выровненным
@@ -65,6 +65,6 @@
  *
  * @note Выравнивание должно быть степенью двойки, чтобы корректно работать.
  */
-#define se_addr_is_aligned(addr, align) se_numeric_no_remainder(addr, align)
+#define se_addr_check_alignment(addr, align) se_numeric_no_remainder(addr, align)
 
 #endif // SE_ADDR_UTIL_H
