@@ -2,25 +2,25 @@
 #include <se/core/version.h>
 
 const char *
-se_version()
+se_version(void)
 {
     return se_str_from_args(SE_VERSION_MAJOR.SE_VERSION_MINOR.SE_VERSION_PATCH);
 }
 
 se_return_t
-se_version_major()
+se_version_major(void)
 {
     return SE_VERSION_MAJOR;
 }
 
 se_return_t
-se_version_minor()
+se_version_minor(void)
 {
     return SE_VERSION_MINOR;
 }
 
 se_return_t
-se_version_patch()
+se_version_patch(void)
 {
     return SE_VERSION_PATCH;
 }

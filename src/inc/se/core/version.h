@@ -42,7 +42,7 @@ SE_COMPILER(EXTERN_C_BEGIN)
  */
 SE_ATTRIBUTE(SYMBOL)
 const char *
-se_version();
+se_version(void);
 
 /**
  * @brief Возвращает значение основной (major) версии.
@@ -60,7 +60,7 @@ se_version();
  */
 SE_ATTRIBUTE(SYMBOL)
 se_return_t
-se_version_major();
+se_version_major(void);
 
 /**
  * @brief Возвращает значение младшей (minor) версии.
@@ -78,7 +78,7 @@ se_version_major();
  */
 SE_ATTRIBUTE(SYMBOL)
 se_return_t
-se_version_minor();
+se_version_minor(void);
 
 /**
  * @brief Возвращает значение исправительной (patch) версии.
@@ -96,7 +96,7 @@ se_version_minor();
  */
 SE_ATTRIBUTE(SYMBOL)
 se_return_t
-se_version_patch();
+se_version_patch(void);
 
 SE_COMPILER(EXTERN_C_END)
 
