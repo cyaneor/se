@@ -19,6 +19,8 @@
 #define SE_COMPILER_EXTERN_C_H
 
 #ifdef __cplusplus
+#    include "compiler_extern.h"
+
 /**
  * @def SE_COMPILER_EXTERN_C_BEGIN
  * @brief Начинает блок кода с линковкой 'C'.
@@ -29,7 +31,7 @@
  * искажение имен (name mangling) и обеспечивает совместимость между кодом на C и C++.
  */
 #    define SE_COMPILER_EXTERN_C_BEGIN                                                             \
-        extern "C"                                                                                 \
+        SE_COMPILER_EXTERN "C"                                                                     \
         {
 
 /**

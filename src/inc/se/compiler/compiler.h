@@ -10,6 +10,7 @@
  *
  * Включаемые файлы:
  * - `compiler_version.h`: Определяет версию используемого компилятора.
+ * -  compiler_extern.h`: Определяет макрос для спецификатора хранения extern.
  * - `compiler_extern_c.h`: Управляет линковкой C для совместимости с C++.
  * - `compiler_attribute.h`: Предоставляет различные атрибуты компилятора.
  * - `compiler_bit_depth.h`: Определяет разрядность системы (32 или 64 бита).
@@ -28,6 +29,7 @@
 #include "compiler_bit_depth.h"
 #include "compiler_constructor.h"
 #include "compiler_destructor.h"
+#include "compiler_extern.h"
 #include "compiler_extern_c.h"
 #include "compiler_std_version.h"
 #include "compiler_version.h"
