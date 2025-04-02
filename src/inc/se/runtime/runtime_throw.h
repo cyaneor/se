@@ -22,21 +22,39 @@
  * Если текущий фрейм исключений находится в начале стека,
  * вызывает `se_runtime_fail` для завершения программы с ошибкой.
  *
- * В противном случае выполняет переход к предыдущему фрейму с помощью
- * `se_runtime_except_frame_load`, передавая указанный код исключения.
+ * В противном случае переходит к предыдущему фрейму
+ * и выполняет `longjmp` с указанным кодом исключения.
+ *
+ * В режиме отладки (`SE_COMPILE_OPTION_DEBUG`) дополнительно записывает информацию
+ * о трассировке (время, файл, функция) в поле `trace` предыдущего фрейма.
  *
  * @param code Код исключения.
- * @param ... Дополнительные аргументы для передачи в `se_runtime_fail`.
+ * @param ... Дополнительные аргументы для передачи в `se_runtime_fail` (в случае ошибки).
  */
-#define se_runtime_throw(code, ...)                                                                \
-    do                                                                                             \
-    {                                                                                              \
-        if (se_runtime_except_frame_is_begin())                                                    \
+#ifdef SE_COMPILE_OPTION_DEBUG
+#    define se_runtime_throw(code, ...)                                                            \
+        do                                                                                         \
         {                                                                                          \
-            se_runtime_fail(code, __VA_ARGS__);                                                    \
-        }                                                                                          \
-        se_runtime_except_frame_load(code);                                                        \
-    } while (0)
+            if (se_runtime_except_frame_is_begin())                                                \
+            {                                                                                      \
+                se_runtime_fail(code, __VA_ARGS__);                                                \
+            }                                                                                      \
+                                                                                                   \
+            se_except_frame_t *prev = se_runtime_except_frame_prev();                              \
+            prev->trace = (se_except_trace_t){__TIMESTAMP__, __FILE_NAME__, __FUNCTION__};         \
+            longjmp(prev->env, code);                                                              \
+        } while (0)
+#else
+#    define se_runtime_throw(code, ...)                                                            \
+        do                                                                                         \
+        {                                                                                          \
+            if (se_runtime_except_frame_is_begin())                                                \
+            {                                                                                      \
+                se_runtime_fail(code, __VA_ARGS__);                                                \
+            }                                                                                      \
+            se_runtime_except_frame_load(code);                                                    \
+        } while (0)
+#endif // SE_COMPILE_OPTION_DEBUG
 
 /**
  * @def se_runtime_rethrow(code, ...)

@@ -1,5 +1,5 @@
 /**
- * @file runtime_except_frames.h
+ * @file runtime_except_frame.h
  * @brief Заголовочный файл
  *        для управления фреймами исключений во время выполнения.
  *
@@ -23,11 +23,11 @@
 #define se_runtime_except_frame_save(x) setjmp(*se_runtime_except_frame_push(x))
 
 /**
- * @def se_runtime_except_frame_load_unsafe(return_value)
+ * @def se_runtime_except_frame_load(x)
  * @brief Выполняет возврат к предыдущему фрейму исключений.
  * @param x Значение, возвращаемое при переходе.
  */
-#define se_runtime_except_frame_load(x) longjmp(*se_runtime_except_frame_prev(), x)
+#define se_runtime_except_frame_load(x) longjmp(se_runtime_except_frame_prev()->env, x)
 
 /**
  * @var se_runtime_except_frames
@@ -106,20 +106,25 @@ se_runtime_except_frame_push(se_except_frame_t *except)
 }
 
 /**
- * @fn se_jump_buffer_t* se_runtime_except_frame_prev(void)
- * @brief Переходит к предыдущему фрейму исключений в стеке.
- * @return Указатель на буфер перехода (jmp_buf) предыдущего фрейма или текущего,
- *         если достигнуто начало.
+ * @fn se_except_frame_t* se_runtime_except_frame_prev(void)
+ * @brief Переходит к предыдущему фрейму исключений в стеке и возвращает его.
+ *
+ * Уменьшает указатель `se_runtime_except_frame` на один,
+ * если текущий фрейм не является начальным,
+ * и возвращает указатель на предыдущий фрейм исключений.
+ *
+ * @return Указатель на предыдущий фрейм исключений или текущий,
+ *         если достигнуто начало стека.
  */
 SE_COMPILER_ATTRIBUTE_FORCE_INLINE
-se_jump_buffer_t *
+se_except_frame_t *
 se_runtime_except_frame_prev(void)
 {
     if (!se_runtime_except_frame_is_begin())
     {
         se_runtime_except_frame--;
     }
-    return &(*se_runtime_except_frame)->env;
+    return *se_runtime_except_frame;
 }
 
 #endif // SE_RUNTIME_EXCEPT_FRAMES_H

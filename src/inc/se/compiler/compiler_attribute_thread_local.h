@@ -1,5 +1,5 @@
 /**
- * @file compiler_attribute_thread.h
+ * @file compiler_attribute_thread_local.h
  * @brief Определение атрибута потоковой локальной памяти для различных компиляторов.
  *
  * Этот файл предоставляет макрос `SE_COMPILER_ATTRIBUTE_THREAD_LOCAL` для указания атрибута

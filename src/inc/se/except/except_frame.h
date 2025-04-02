@@ -11,14 +11,15 @@
 #define SE_EXCEPT_FRAME_H
 
 #include <se/core/error_code.h>
+#include "except_trace.h"
 #include "jump_buffer.h"
 
 /**
  * @struct se_except_frame
  * @brief Структура, представляющая фрейм исключений.
  *
- * Содержит код ошибки и буфер перехода
- * для управления обработкой исключений.
+ * Содержит код ошибки, буфер перехода и, в режиме отладки,
+ * информацию о трассировке для управления обработкой исключений и отладки.
  */
 typedef struct se_except_frame
 {
@@ -39,6 +40,17 @@ typedef struct se_except_frame
      * используемое для переходов с помощью `setjmp` и `longjmp`.
      */
     se_jump_buffer_t env;
+
+#ifdef SE_COMPILE_OPTION_DEBUG
+    /**
+     * @var trace
+     * @brief Информация о трассировке исключения.
+     *
+     * Поле типа `se_except_trace_t`, содержащее данные о месте возникновения исключения
+     * (время, файл, функция). Доступно только в режиме отладки (`SE_COMPILE_OPTION_DEBUG`).
+     */
+    se_except_trace_t trace;
+#endif // SE_COMPILE_OPTION_DEBUG
 } se_except_frame_t;
 
 #endif // SE_EXCEPT_FRAME_H
