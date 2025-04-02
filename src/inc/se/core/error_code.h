@@ -15,7 +15,7 @@
 #ifndef SE_ERROR_CODE_H
 #define SE_ERROR_CODE_H
 
-#include <se/core/return.h>
+#include "return.h"
 
 /**
  * @def SE_ERROR_CODE_T_SIZE

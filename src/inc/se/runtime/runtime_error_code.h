@@ -11,7 +11,7 @@
 #ifndef SE_RUNTIME_ERROR_CODE_H
 #define SE_RUNTIME_ERROR_CODE_H
 
-#include <se/error/error_code.h>
+#include <se/core/error_code.h>
 #include <se/attribute/attribute.h>
 
 /**
