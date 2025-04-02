@@ -19,7 +19,7 @@
  * @brief Переменная с локальным хранением для потоков,
  *        содержащая текущий код ошибки времени выполнения.
  */
-SE_COMPILER_EXTERN
+SE_COMPILER(EXTERN)
 SE_ATTRIBUTE(THREAD_LOCAL)
 se_error_code_t se_runtime_error_code;
 
