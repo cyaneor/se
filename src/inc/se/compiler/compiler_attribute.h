@@ -8,7 +8,7 @@
  * переменные и функции, а также атрибуты для потоковой локальности.
  *
  * Включаемые файлы:
- * - `compiler_attribute_builtin.h`:
+ * - `compiler_attribute_force_inline.h`:
  *    Определения встроенных функций компилятора.
  * - `compiler_attribute_symbol.h`:
  *    Атрибуты для управления экспортом и импортом символов.
@@ -25,7 +25,7 @@
 #ifndef SE_COMPILER_ATTRIBUTE_H
 #define SE_COMPILER_ATTRIBUTE_H
 
-#include "compiler_attribute_builtin.h"
+#include "compiler_attribute_force_inline.h"
 #include "compiler_attribute_symbol.h"
 #include "compiler_attribute_target.h"
 #include "compiler_attribute_thread_local.h"
