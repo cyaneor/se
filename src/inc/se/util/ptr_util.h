@@ -11,8 +11,8 @@
 #define SE_PTR_UTIL_H
 
 #include "addr_util.h"
-#include "nullptr.h"
-#include "ptrdiff.h"
+#include <se/core/nullptr.h>
+#include <se/core/ptrdiff.h>
 #include <se/static/static_cast.h>
 
 /**

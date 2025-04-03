@@ -1,8 +1,8 @@
 #ifndef SE_ADDR_UTIL_H
 #define SE_ADDR_UTIL_H
 
-#include "addr.h"
-#include "reinterpret_cast.h"
+#include <se/core/addr.h>
+#include <se/core/reinterpret_cast.h>
 #include <se/numeric/numeric_util.h>
 
 /**

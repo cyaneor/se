@@ -1,4 +1,4 @@
-#include <se/core/str_util.h>
+#include <se/util/str_util.h>
 #include <se/core/version.h>
 
 const char *
