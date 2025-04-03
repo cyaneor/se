@@ -11,7 +11,7 @@
 #ifndef SE_SIZE_H
 #define SE_SIZE_H
 
-#include "numeric_fixed.h"
+#include <se/numeric/numeric_fixed.h>
 
 #ifdef SE_SIZE_T_SIZE
 #    if SE_SIZE_T_SIZE == 8

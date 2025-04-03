@@ -11,7 +11,7 @@
 #ifndef SE_ADDR_H
 #define SE_ADDR_H
 
-#include "numeric_fixed.h"
+#include <se/numeric/numeric_fixed.h>
 
 #ifdef SE_PTR_SIZE
 #    if SE_PTR_SIZE == 8

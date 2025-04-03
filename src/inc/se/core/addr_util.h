@@ -1,8 +1,9 @@
 #ifndef SE_ADDR_UTIL_H
 #define SE_ADDR_UTIL_H
 
-#include "numeric_util.h"
+#include "addr.h"
 #include "reinterpret_cast.h"
+#include <se/numeric/numeric_util.h>
 
 /**
  * @def se_addr_to_ptr

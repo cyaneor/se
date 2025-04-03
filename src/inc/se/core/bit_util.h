@@ -2,7 +2,7 @@
 #define SE_BIT_UTIL_H
 
 #include "type_util.h"
-#include "numeric_util.h"
+#include <se/numeric/numeric_util.h>
 
 /**
  * @def se_bit_and

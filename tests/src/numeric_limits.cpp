@@ -1,4 +1,4 @@
-#include <se/core/numeric_limits.h>
+#include "se/numeric/numeric_limits.h"
 #include <gtest/gtest.h>
 
 TEST(numeric_limits, char_type_size) {
@@ -9,9 +9,7 @@ TEST(numeric_limits, short_type_size) {
   EXPECT_EQ(sizeof(short), SE_SHORT_T_SIZE);
 }
 
-TEST(numeric_limits, int_type_size) {
-  EXPECT_EQ(sizeof(int), SE_INT_T_SIZE);
-}
+TEST(numeric_limits, int_type_size) { EXPECT_EQ(sizeof(int), SE_INT_T_SIZE); }
 
 TEST(numeric_limits, long_type_size) {
   EXPECT_EQ(sizeof(long), SE_LONG_T_SIZE);
