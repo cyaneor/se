@@ -14,44 +14,32 @@
 #define SE_INTERVAL_UTIL_H
 
 /**
- * @def se_interval_is_valid_closed
+ * @def se_interval_check_valid_closed
  * @brief Проверяет, является ли интервал с замкнутыми границами валидным.
  *
- * Этот макрос проверяет, что значение переменной `lower` меньше
- * или равно значению переменной `upper`, что гарантирует,
- * что интервал с замкнутыми границами является валидным.
- *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
  *
  * @return Возвращает значение выражения `lower <= upper`,
  *         что истинно, если интервал валиден.
  */
-#define se_interval_is_valid_closed(lower, upper) (lower <= upper)
+#define se_interval_check_valid_closed(lower, upper) (lower <= upper)
 
 /**
- * @def se_interval_is_valid_left_opened
+ * @def se_interval_check_valid_left_open
  * @brief Проверяет, является ли интервал с левой открытой границей валидным.
  *
- * Этот макрос проверяет, что значение переменной `lower`
- * строго меньше значения переменной `upper`, что гарантирует,
- * что интервал с левой открытой границей является валидным.
- *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
  *
  * @return Возвращает значение выражения `lower < upper`,
  *         что истинно, если интервал валиден.
  */
-#define se_interval_is_valid_left_opened(lower, upper) (lower < upper)
+#define se_interval_check_valid_left_open(lower, upper) (lower < upper)
 
 /**
- * @def se_interval_is_valid_right_opened
+ * @def se_interval_check_valid_right_open
  * @brief Проверяет, является ли интервал с правой открытой границей валидным.
- *
- * Этот макрос проверяет, что значение переменной `lower` меньше
- * или равно значению переменной `upper`, что гарантирует,
- * что интервал с правой открытой границей является валидным.
  *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
@@ -59,15 +47,11 @@
  * @return Возвращает значение выражения `lower <= upper`,
  *         что истинно, если интервал валиден.
  */
-#define se_interval_is_valid_right_opened(lower, upper) (lower <= upper)
+#define se_interval_check_valid_right_open(lower, upper) (lower <= upper)
 
 /**
- * @def se_interval_is_valid_opened
+ * @def se_interval_check_valid_open
  * @brief Проверяет, является ли интервал с обеими открытыми границами валидным.
- *
- * Этот макрос проверяет, что значение переменной `lower`
- * строго меньше значения переменной `upper`, что гарантирует,
- * что интервал с обеими открытыми границами является валидным.
  *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
@@ -75,14 +59,11 @@
  * @return Возвращает значение выражения `lower < upper`,
  *         что истинно, если интервал валиден.
  */
-#define se_interval_is_valid_opened(lower, upper) (lower < upper)
+#define se_interval_check_valid_open(lower, upper) (lower < upper)
 
 /**
- * @def se_interval_has_closed
+ * @def se_interval_contains_closed
  * @brief Проверяет, содержится ли значение в замкнутом интервале.
- *
- * Этот макрос проверяет, что значение переменной `value` лежит в пределах интервала,
- * включая обе границы (нижнюю и верхнюю), то есть интервал с замкнутыми границами.
  *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
@@ -91,14 +72,11 @@
  * @return Возвращает `true`, если значение `value` лежит в интервале [lower, upper],
  *         и `false` в противном случае.
  */
-#define se_interval_has_closed(lower, upper, value) ((value) >= (lower) && (value) <= (upper))
+#define se_interval_contains_closed(lower, upper, value) ((value) >= (lower) && (value) <= (upper))
 
 /**
- * @def se_interval_has_left_opened
+ * @def se_interval_contains_left_open
  * @brief Проверяет, содержится ли значение в интервале с левой открытой границей.
- *
- * Этот макрос проверяет, что значение переменной `value` лежит в пределах интервала,
- * где нижняя граница не включена (левая открытая граница), а верхняя граница включена.
  *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
@@ -107,14 +85,12 @@
  * @return Возвращает `true`, если значение `value` лежит в интервале (lower, upper],
  *         и `false` в противном случае.
  */
-#define se_interval_has_left_opened(lower, upper, value) ((value) > (lower) && (value) <= (upper))
+#define se_interval_contains_left_open(lower, upper, value)                                        \
+    ((value) > (lower) && (value) <= (upper))
 
 /**
- * @def se_interval_has_right_opened
+ * @def se_interval_contains_right_open
  * @brief Проверяет, содержится ли значение в интервале с правой открытой границей.
- *
- * Этот макрос проверяет, что значение переменной `value` лежит в пределах интервала,
- * где верхняя граница не включена (правая открытая граница), а нижняя граница включена.
  *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
@@ -123,14 +99,12 @@
  * @return Возвращает `true`, если значение `value` лежит в интервале [lower, upper),
  *         и `false` в противном случае.
  */
-#define se_interval_has_right_opened(lower, upper, value) ((value) >= (lower) && (value) < (upper))
+#define se_interval_contains_right_open(lower, upper, value)                                       \
+    ((value) >= (lower) && (value) < (upper))
 
 /**
- * @def se_interval_has_opened
+ * @def se_interval_contains_open
  * @brief Проверяет, содержится ли значение в интервале с обеими открытыми границами.
- *
- * Этот макрос проверяет, что значение переменной `value` лежит в пределах интервала,
- * где обе границы (нижняя и верхняя) не включены.
  *
  * @param lower Нижняя граница интервала.
  * @param upper Верхняя граница интервала.
@@ -139,6 +113,110 @@
  * @return Возвращает `true`, если значение `value` лежит в интервале (lower, upper),
  *         и `false` в противном случае.
  */
-#define se_interval_has_opened(lower, upper, value) ((value) > (lower) && (value) < (upper))
+#define se_interval_contains_open(lower, upper, value) ((value) > (lower) && (value) < (upper))
+
+/**
+ * @def se_interval_check_valid_closed_reverse
+ * @brief Проверяет, является ли обратный интервал с замкнутыми границами валидным.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ *
+ * @return Возвращает значение выражения `lower >= upper`,
+ *         что истинно, если интервал валиден.
+ */
+#define se_interval_check_valid_closed_reverse(lower, upper) (lower >= upper)
+
+/**
+ * @def se_interval_check_valid_left_open_reverse
+ * @brief Проверяет, является ли обратный интервал с левой открытой границей валидным.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ *
+ * @return Возвращает значение выражения `lower > upper`,
+ *         что истинно, если интервал валиден.
+ */
+#define se_interval_check_valid_left_open_reverse(lower, upper) (lower > upper)
+
+/**
+ * @def se_interval_check_valid_right_open_reverse
+ * @brief Проверяет, является ли обратный интервал с правой открытой границей валидным.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ *
+ * @return Возвращает значение выражения `lower >= upper`,
+ *         что истинно, если интервал валиден.
+ */
+#define se_interval_check_valid_right_open_reverse(lower, upper) (lower >= upper)
+
+/**
+ * @def se_interval_check_valid_open_reverse
+ * @brief Проверяет, является ли обратный интервал с обеими открытыми границами валидным.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ *
+ * @return Возвращает значение выражения `lower > upper`,
+ *         что истинно, если интервал валиден.
+ */
+#define se_interval_check_valid_open_reverse(lower, upper) (lower > upper)
+
+/**
+ * @def se_interval_contains_closed_reverse
+ * @brief Проверяет, содержится ли значение в замкнутом обратном интервале.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ * @param value Значение, которое проверяется на принадлежность интервалу.
+ *
+ * @return Возвращает `true`, если значение `value` лежит в интервале [upper, lower],
+ *         и `false` в противном случае.
+ */
+#define se_interval_contains_closed_reverse(lower, upper, value)                                   \
+    ((value) >= (upper) && (value) <= (lower))
+
+/**
+ * @def se_interval_contains_left_open_reverse
+ * @brief Проверяет, содержится ли значение в обратном интервале с левой открытой границей.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ * @param value Значение, которое проверяется на принадлежность интервалу.
+ *
+ * @return Возвращает `true`, если значение `value` лежит в интервале (upper, lower],
+ *         и `false` в противном случае.
+ */
+#define se_interval_contains_left_open_reverse(lower, upper, value)                                \
+    ((value) > (upper) && (value) <= (lower))
+
+/**
+ * @def se_interval_contains_right_open_reverse
+ * @brief Проверяет, содержится ли значение в обратном интервале с правой открытой границей.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ * @param value Значение, которое проверяется на принадлежность интервалу.
+ *
+ * @return Возвращает `true`, если значение `value` лежит в интервале [upper, lower),
+ *         и `false` в противном случае.
+ */
+#define se_interval_contains_right_open_reverse(lower, upper, value)                               \
+    ((value) >= (upper) && (value) < (lower))
+
+/**
+ * @def se_interval_contains_open_reverse
+ * @brief Проверяет, содержится ли значение в обратном интервале с обеими открытыми границами.
+ *
+ * @param lower Нижняя граница интервала (больше верхней).
+ * @param upper Верхняя граница интервала (меньше нижней).
+ * @param value Значение, которое проверяется на принадлежность интервалу.
+ *
+ * @return Возвращает `true`, если значение `value` лежит в интервале (upper, lower),
+ *         и `false` в противном случае.
+ */
+#define se_interval_contains_open_reverse(lower, upper, value)                                     \
+    ((value) > (upper) && (value) < (lower))
 
 #endif // SE_INTERVAL_UTIL_H
