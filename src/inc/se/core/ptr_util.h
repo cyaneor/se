@@ -13,7 +13,7 @@
 #include "addr_util.h"
 #include "nullptr.h"
 #include "ptrdiff.h"
-#include "static_cast.h"
+#include <se/static/static_cast.h>
 
 /**
  * @def se_ptr_cast

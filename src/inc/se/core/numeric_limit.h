@@ -22,7 +22,7 @@
 #define SE_NUMERIC_LIMIT_H
 
 #include <se/core/bit_util.h>
-#include <se/core/static_cast.h>
+#include <se/static/static_cast.h>
 
 /**
  * @def se_numeric_limit_sint_min(T)
