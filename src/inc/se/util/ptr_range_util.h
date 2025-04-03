@@ -53,42 +53,42 @@
  * @def se_ptr_range_check_both_aligned
  * @brief Проверяет выравнивание двух диапазонов указателей.
  *
- * @param lhs Начало первого диапазона.
- * @param lhs_end Конец первого диапазона.
- * @param rhs Начало второго диапазона.
- * @param rhs_end Конец второго диапазона.
+ * @param r1_begin Начало первого диапазона.
+ * @param r1_end Конец первого диапазона.
+ * @param r2_begin Начало второго диапазона.
+ * @param r2_end Конец второго диапазона.
  * @param align Значение выравнивания.
  * @return `true`, если оба диапазона выровнены, иначе `false`.
  *
  * @note Выравнивание `align` не должно быть нулевым.
  */
-#define se_ptr_range_check_both_aligned(lhs, lhs_end, rhs, rhs_end, align)                         \
-    (se_ptr_range_check_alignment(lhs, lhs_end, align) &&                                          \
-     se_ptr_range_check_alignment(rhs, rhs_end, align))
+#define se_ptr_range_check_both_aligned(r1_begin, r1_end, r2_begin, r2_end, align)                 \
+    (se_ptr_range_check_alignment(r1_begin, r1_end, align) &&                                      \
+     se_ptr_range_check_alignment(r2_begin, r2_end, align))
 
 /**
  * @def se_ptr_range_no_overlap
  * @brief Проверяет, не пересекаются ли два диапазона.
  *
- * @param lhs_begin Начало первого диапазона.
- * @param rhs_begin Начало второго диапазона.
- * @param rhs_end Конец второго диапазона.
+ * @param r1_begin Начало первого диапазона.
+ * @param r2_begin Начало второго диапазона.
+ * @param r2_end Конец второго диапазона.
  * @return `true`, если диапазоны не пересекаются, иначе `false`.
  */
-#define se_ptr_range_no_overlap(lhs_begin, rhs_begin, rhs_end)                                     \
-    ((lhs_begin <= rhs_begin) || (rhs_end <= lhs_begin))
+#define se_ptr_range_no_overlap(r1_begin, r2_begin, r2_end)                                        \
+    ((r1_begin <= r2_begin) || (r2_end <= r1_begin))
 
 /**
  * @def se_ptr_range_overlaps
  * @brief Проверяет, пересекаются ли два диапазона.
  *
- * @param lhs_begin Начало первого диапазона.
- * @param rhs_begin Начало второго диапазона.
- * @param rhs_end Конец второго диапазона.
+ * @param r1_begin Начало первого диапазона.
+ * @param r2_begin Начало второго диапазона.
+ * @param r2_end Конец второго диапазона.
  * @return `true`, если диапазоны пересекаются, иначе `false`.
  */
-#define se_ptr_range_overlaps(lhs_begin, rhs_begin, rhs_end)                                       \
-    (!se_ptr_range_no_overlap(lhs_begin, rhs_begin, rhs_end))
+#define se_ptr_range_overlaps(r1_begin, r2_begin, r2_end)                                          \
+    (!se_ptr_range_no_overlap(r1_begin, r2_begin, r2_end))
 
 /**
  * @def se_ptr_range_element_count
@@ -136,6 +136,22 @@
     (se_ptr_range_validate(r1_begin, r1_end) && se_ptr_range_validate(r2_begin, r2_end))
 
 /**
+ * @def se_ptr_range_check_reversed
+ * @brief Проверяет, что указатель `begin` находится за пределами указателя `end`.
+ *
+ * Этот макрос используется для проверки, что указатель `begin`
+ * находится после указателя `end` в памяти.
+ *
+ * @param begin Указатель на начало диапазона.
+ * @param end Указатель на конец диапазона.
+ * @return true Если `begin` больше `end`, то диапазон считается
+ *               некорректным.
+ * @return false Если `begin` меньше или равен `end`, то диапазон
+ *                считается корректным.
+ */
+#define se_ptr_range_check_reversed(begin, end) (begin > end)
+
+/**
  * @def se_ptr_range_reverse_contains
  * @brief Проверяет, находится ли указатель в пределах обратного диапазона.
  *
@@ -167,42 +183,42 @@
  * @def se_ptr_range_reverse_check_both_aligned
  * @brief Проверяет выравнивание двух обратных диапазонов указателей.
  *
- * @param lhs Начало первого обратного диапазона.
- * @param lhs_end Конец первого обратного диапазона.
- * @param rhs Начало второго обратного диапазона.
- * @param rhs_end Конец второго обратного диапазона.
+ * @param r1_begin Начало первого обратного диапазона.
+ * @param r1_end Конец первого обратного диапазона.
+ * @param r2_begin Начало второго обратного диапазона.
+ * @param r2_end Конец второго обратного диапазона.
  * @param align Значение выравнивания.
  * @return `true`, если оба диапазона выровнены, иначе `false`.
  *
  * @note Выравнивание `align` не должно быть нулевым.
  */
-#define se_ptr_range_reverse_check_both_aligned(lhs, lhs_end, rhs, rhs_end, align)                 \
-    (se_ptr_range_reverse_check_alignment(lhs, lhs_end, align) &&                                  \
-     se_ptr_range_reverse_check_alignment(rhs, rhs_end, align))
+#define se_ptr_range_reverse_check_both_aligned(r1_begin, r1_end, r2_begin, r2_end, align)         \
+    (se_ptr_range_reverse_check_alignment(r1_begin, r1_end, align) &&                              \
+     se_ptr_range_reverse_check_alignment(r2_begin, r2_end, align))
 
 /**
  * @def se_ptr_range_reverse_no_overlap
  * @brief Проверяет, не пересекаются ли два обратных диапазона.
  *
- * @param lhs_begin Начало первого обратного диапазона.
- * @param rhs_begin Начало второго обратного диапазона.
- * @param rhs_end Конец второго обратного диапазона.
+ * @param r1_begin Начало первого обратного диапазона.
+ * @param r2_begin Начало второго обратного диапазона.
+ * @param r2_end Конец второго обратного диапазона.
  * @return `true`, если обратные диапазоны не пересекаются, иначе `false`.
  */
-#define se_ptr_range_reverse_no_overlap(lhs_begin, rhs_begin, rhs_end)                             \
-    ((lhs_begin <= rhs_end) || (rhs_begin <= lhs_begin))
+#define se_ptr_range_reverse_no_overlap(r1_begin, r2_begin, r2_end)                                \
+    ((r1_begin <= r2_end) || (r2_begin <= r1_begin))
 
 /**
  * @def se_ptr_range_reverse_overlaps
  * @brief Проверяет, пересекаются ли два обратных диапазона.
  *
- * @param lhs_begin Начало первого обратного диапазона.
- * @param rhs_begin Начало второго обратного диапазона.
- * @param rhs_end Конец второго обратного диапазона.
+ * @param r1_begin Начало первого обратного диапазона.
+ * @param r2_begin Начало второго обратного диапазона.
+ * @param r2_end Конец второго обратного диапазона.
  * @return `true`, если обратные диапазоны пересекаются, иначе `false`.
  */
-#define se_ptr_range_reverse_overlaps(lhs_begin, rhs_begin, rhs_end)                               \
-    (!se_ptr_range_reverse_no_overlap(lhs_begin, rhs_begin, rhs_end))
+#define se_ptr_range_reverse_overlaps(r1_begin, r2_begin, r2_end)                                  \
+    (!se_ptr_range_reverse_no_overlap(r1_begin, r2_begin, r2_end))
 
 /**
  * @def se_ptr_range_reverse_element_count
