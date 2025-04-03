@@ -24,22 +24,20 @@
  * @brief Проверяет, находится ли указатель в пределах заданного диапазона.
  *
  * Проверяет, лежит ли указатель `ptr` в диапазоне от `begin` до `end` (включительно).
- * Использует `se_interval_has_closed` для проверки принадлежности с замкнутыми границами.
+ * Использует `se_interval_contains_closed` для проверки принадлежности с замкнутыми границами.
  *
  * @param begin Начало диапазона.
  * @param end Конец диапазона.
  * @param ptr Указатель для проверки.
  * @return `true`, если `ptr` находится в диапазоне [begin, end], иначе `false`.
  *
- * @see se_interval_has_closed
+ * @see se_interval_contains_closed
  */
-#define se_ptr_range_contains(begin, end, ptr) se_interval_has_closed(begin, end, ptr)
+#define se_ptr_range_contains(begin, end, ptr) se_interval_contains_closed(begin, end, ptr)
 
 /**
  * @def se_ptr_range_check_alignment
  * @brief Проверяет выравнивание двух указателей по заданному значению.
- *
- * Проверяет, выровнены ли адреса указателей `ptr1` и `ptr2` по заданному `align`.
  *
  * @param ptr1 Первый указатель.
  * @param ptr2 Второй указатель.
@@ -54,8 +52,6 @@
 /**
  * @def se_ptr_range_check_both_aligned
  * @brief Проверяет выравнивание двух диапазонов указателей.
- *
- * Проверяет, выровнены ли оба диапазона (`lhs`..`lhs_end` и `rhs`..`rhs_end`) по `align`.
  *
  * @param lhs Начало первого диапазона.
  * @param lhs_end Конец первого диапазона.
@@ -74,8 +70,6 @@
  * @def se_ptr_range_no_overlap
  * @brief Проверяет, не пересекаются ли два диапазона.
  *
- * Определяет, не перекрываются ли диапазоны `lhs_begin` и `rhs_begin`..`rhs_end`.
- *
  * @param lhs_begin Начало первого диапазона.
  * @param rhs_begin Начало второго диапазона.
  * @param rhs_end Конец второго диапазона.
@@ -88,8 +82,6 @@
  * @def se_ptr_range_overlaps
  * @brief Проверяет, пересекаются ли два диапазона.
  *
- * Определяет, перекрываются ли диапазоны `lhs_begin` и `rhs_begin`..`rhs_end`.
- *
  * @param lhs_begin Начало первого диапазона.
  * @param rhs_begin Начало второго диапазона.
  * @param rhs_end Конец второго диапазона.
@@ -101,8 +93,6 @@
 /**
  * @def se_ptr_range_element_count
  * @brief Вычисляет количество элементов заданного типа в диапазоне.
- *
- * Рассчитывает, сколько элементов размера `type_size` помещается между `begin` и `end`.
  *
  * @param begin Начало диапазона.
  * @param end Конец диапазона.
@@ -124,21 +114,17 @@
  * @def se_ptr_range_validate
  * @brief Проверяет валидность диапазона указателей.
  *
- * Проверяет, что `begin` не NULL и диапазон `begin`..`end` валиден (замкнут).
- *
  * @param begin Начало диапазона.
  * @param end Конец диапазона.
  * @return `true`, если диапазон валиден, иначе `false`.
  *
- * @see se_interval_is_valid_closed
+ * @see se_interval_check_valid_closed
  */
-#define se_ptr_range_validate(begin, end) (begin && se_interval_is_valid_closed(begin, end))
+#define se_ptr_range_validate(begin, end) (begin && se_interval_check_valid_closed(begin, end))
 
 /**
  * @def se_ptr_range_validate_both
  * @brief Проверяет валидность двух диапазонов указателей.
- *
- * Проверяет, что оба диапазона (`r1_begin`..`r1_end` и `r2_begin`..`r2_end`) валидны.
  *
  * @param r1_begin Начало первого диапазона.
  * @param r1_end Конец первого диапазона.
