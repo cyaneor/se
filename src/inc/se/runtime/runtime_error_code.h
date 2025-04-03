@@ -14,6 +14,12 @@
 #include <se/core/error_code.h>
 #include <se/attribute/attribute.h>
 
+enum
+{
+    SE_RUNTIME_ERROR_OK = SE_ERROR_CODE_NONE,
+    SE_RUNTIME_ERROR_NULL_POINTER,
+};
+
 /**
  * @var se_error_code_t se_runtime_error_code
  * @brief Переменная с локальным хранением для потоков,
