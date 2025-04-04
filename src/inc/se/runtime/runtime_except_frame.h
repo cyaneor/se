@@ -20,7 +20,7 @@
  * @param x Указатель на se_except_frame_t для сохранения точки возврата.
  * @return Результат выполнения setjmp.
  */
-#define se_runtime_except_frame_save(x) setjmp(*se_runtime_except_frame_push(x))
+#define se_runtime_except_frame_save(x) setjmp(se_runtime_except_frame_push(x)->env)
 
 /**
  * @def se_runtime_except_frame_load(x)
@@ -91,18 +91,18 @@ se_runtime_except_frame_next(void)
 }
 
 /**
- * @fn se_jump_buffer_t* se_runtime_except_frame_push(se_except_frame_t *except)
+ * @fn se_except_frame_t* se_runtime_except_frame_push(se_except_frame_t *except)
  * @brief Добавляет новый фрейм исключений в стек.
  * @param except Указатель на фрейм исключений для добавления.
- * @return Указатель на буфер перехода (jmp_buf) нового фрейма.
+ * @return Указатель на добавленный фрейм исключений.
  */
 SE_COMPILER_ATTRIBUTE_FORCE_INLINE
-se_jump_buffer_t *
+se_except_frame_t *
 se_runtime_except_frame_push(se_except_frame_t *except)
 {
     *se_runtime_except_frame = except;
     se_runtime_except_frame_next();
-    return &except->env;
+    return except;
 }
 
 /**

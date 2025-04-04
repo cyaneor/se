@@ -56,16 +56,4 @@
         } while (0)
 #endif // SE_COMPILE_OPTION_DEBUG
 
-/**
- * @def se_runtime_rethrow(...)
- * @brief Повторно выбрасывает текущее исключение с кодом из фрейма `e`.
- *
- * Использует код исключения из текущего фрейма `e`
- * и передаёт его в `se_runtime_throw` вместе с дополнительными аргументами.
- *
- * @param ... Дополнительные аргументы для передачи в `se_runtime_fail`.
- * @note Предполагается, что `e` определён в контексте вызова.
- */
-#define se_runtime_rethrow(...) se_runtime_throw(e.code, __VA_ARGS__)
-
 #endif // SE_RUNTIME_THROW_H
