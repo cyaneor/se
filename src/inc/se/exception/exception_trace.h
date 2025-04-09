@@ -1,23 +1,23 @@
 /**
- * @file except_trace.h
+ * @file exception_trace.h
  * @brief Заголовочный файл, определяющий структуру трассировки исключений.
  *
- * Этот файл содержит определение структуры `se_except_trace_t`,
+ * Этот файл содержит определение структуры `se_exception_trace_t`,
  * используемой для хранения информации о трассировке исключений в режиме отладки.
  * Предназначен для записи данных о месте и времени возникновения исключений.
  */
 
-#ifndef SE_EXCEPT_TRACE_H
-#define SE_EXCEPT_TRACE_H
+#ifndef SE_EXCEPTION_TRACE_H
+#define SE_EXCEPTION_TRACE_H
 
 /**
- * @struct se_except_trace
+ * @struct se_exception_trace
  * @brief Структура, содержащая информацию о трассировке исключения.
  *
  * Используется в режиме отладки для хранения данных
  * о месте возникновения исключения.
  */
-typedef struct se_except_trace
+typedef struct se_exception_trace
 {
     /**
      * @var timestamp
@@ -45,6 +45,6 @@ typedef struct se_except_trace
      * в момент выброса исключения.
      */
     const char *function;
-} se_except_trace_t;
+} se_exception_trace_t;
 
-#endif // SE_EXCEPT_TRACE_H
+#endif // SE_EXCEPTION_TRACE_H

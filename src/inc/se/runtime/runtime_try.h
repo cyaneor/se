@@ -12,7 +12,7 @@
 #define SE_RUNTIME_TRY_H
 
 #include "runtime_return.h"
-#include "runtime_except_frame.h"
+#include "runtime_exception_frame.h"
 
 /**
  * @def se_runtime_try

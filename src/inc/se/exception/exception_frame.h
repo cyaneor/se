@@ -1,21 +1,21 @@
 /**
- * @file except_frame.h
+ * @file exception_frame.h
  * @brief Заголовочный файл, определяющий структуру фрейма исключений.
  *
- * Этот файл содержит определение структуры `se_except_frame_t`,
+ * Этот файл содержит определение структуры `se_exception_frame_t`,
  * используемой для хранения информации об исключениях
  * и контекста перехода во время выполнения.
  */
 
-#ifndef SE_EXCEPT_FRAME_H
-#define SE_EXCEPT_FRAME_H
+#ifndef SE_EXCEPTION_FRAME_H
+#define SE_EXCEPTION_FRAME_H
 
-#include "except_trace.h"
 #include "jump_buffer.h"
+#include "exception_trace.h"
 #include <se/error/error.h>
 
 /**
- * @struct se_except_frame
+ * @struct se_exception_frame
  * @brief Структура, представляющая фрейм исключений.
  *
  * Эта структура используется для обработки исключений в программе.
@@ -28,22 +28,22 @@
  * для перехода в другие участки программы
  * (с помощью `setjmp` и `longjmp`).
  *
- * @var se_except_frame_t::err
+ * @var se_exception_frame_t::err
  *      Ошибка, которая произошла в процессе выполнения.
  *      Представлена структурой `se_error_t` и содержит код ошибки и описание ошибки.
  *
- * @var se_except_frame_t::env
+ * @var se_exception_frame_t::env
  *      Буфер перехода, используемый для сохранения состояния выполнения программы.
  *      Применяется для переходов с помощью `setjmp` и `longjmp`.
  */
-typedef struct se_except_frame
+typedef struct se_exception_frame
 {
     se_error_t       err; /**< Ошибка, которая произошла. */
     se_jump_buffer_t env; /**< Буфер перехода для сохранения контекста выполнения. */
 
 #ifdef SE_COMPILE_OPTION_DEBUG
-    se_except_trace_t trace; /**< Информация о трассировке исключения в режиме отладки. */
+    se_exception_trace_t trace; /**< Информация о трассировке исключения в режиме отладки. */
 #endif
-} se_except_frame_t;
+} se_exception_frame_t;
 
-#endif // SE_EXCEPT_FRAME_H
+#endif // SE_EXCEPTION_FRAME_H

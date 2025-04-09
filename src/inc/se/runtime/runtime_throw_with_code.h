@@ -31,6 +31,7 @@
 
 #include "runtime_throw.h"
 #include <se/core/nullptr.h>
+#include <se/runtime/runtime_throw_with_code.h>
 
 /**
  * @def se_runtime_throw_with_code(code, ...)
