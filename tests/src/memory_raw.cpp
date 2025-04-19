@@ -470,3 +470,68 @@ TEST(se_memory_raw_find_from_end, null_pointer_check) {
   EXPECT_DEATH(se_memory_raw_find_from_end(nullptr, &lhs[4], rhs, &rhs[2]),
                ".*");
 }
+
+TEST(se_memory_raw_set, basic_set_operation) {
+  se_u8_t dst[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+  constexpr se_u8_t src[] = {0x01, 0x02, 0x03};
+
+  void *result = se_memory_raw_set(dst, dst + 6, src, src + 3);
+
+  ASSERT_EQ(result, dst + 6);
+  EXPECT_EQ(dst[0], 0x01);
+  EXPECT_EQ(dst[1], 0x02);
+  EXPECT_EQ(dst[2], 0x03);
+  EXPECT_EQ(dst[3], 0x01);
+  EXPECT_EQ(dst[4], 0x02);
+  EXPECT_EQ(dst[5], 0x03);
+}
+
+TEST(se_memory_raw_set, exact_size_fit) {
+  se_u8_t dst[4] = {0x00, 0x00, 0x00, 0x00};
+  constexpr se_u8_t src[] = {0xAA, 0xBB};
+
+  void *result = se_memory_raw_set(dst, dst + 4, src, src + 2);
+
+  ASSERT_EQ(result, dst + 4);
+  EXPECT_EQ(dst[0], 0xAA);
+  EXPECT_EQ(dst[1], 0xBB);
+  EXPECT_EQ(dst[2], 0xAA);
+  EXPECT_EQ(dst[3], 0xBB);
+}
+
+TEST(se_memory_raw_set, single_byte_pattern) {
+  se_u8_t dst[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+  constexpr se_u8_t src[] = {0xFF};
+
+  void *result = se_memory_raw_set(dst, dst + 5, src, src + 1);
+
+  ASSERT_EQ(result, dst + 5);
+  for (unsigned char i : dst) {
+    EXPECT_EQ(i, 0xFF);
+  }
+}
+
+TEST(se_memory_raw_set, null_pointer_check) {
+  constexpr se_u8_t src[] = {0x01, 0x02};
+  EXPECT_DEATH(se_memory_raw_set(nullptr, nullptr, src, src + 2), ".*");
+}
+
+TEST(se_memory_raw_set, empty_src_pattern) {
+  se_u8_t dst[3] = {0x01, 0x02, 0x03};
+  constexpr se_u8_t src[] = {};
+  EXPECT_EQ(se_memory_raw_set(dst, dst + 3, src, src), dst);
+}
+
+TEST(se_memory_raw_set, partial_fill_at_end) {
+  se_u8_t dst[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+  constexpr se_u8_t src[] = {0x11, 0x22, 0x33};
+
+  void *result = se_memory_raw_set(dst, dst + 5, src, src + 3);
+
+  ASSERT_EQ(result, dst + 5);
+  EXPECT_EQ(dst[0], 0x11);
+  EXPECT_EQ(dst[1], 0x22);
+  EXPECT_EQ(dst[2], 0x33);
+  EXPECT_EQ(dst[3], 0x11);
+  EXPECT_EQ(dst[4], 0x22); // Only 2 bytes of the pattern fit at the end
+}
