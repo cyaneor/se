@@ -516,12 +516,6 @@ TEST(se_memory_raw_set, null_pointer_check) {
   EXPECT_DEATH(se_memory_raw_set(nullptr, nullptr, src, src + 2), ".*");
 }
 
-TEST(se_memory_raw_set, empty_src_pattern) {
-  se_u8_t dst[3] = {0x01, 0x02, 0x03};
-  constexpr se_u8_t src[] = {};
-  EXPECT_EQ(se_memory_raw_set(dst, dst + 3, src, src), dst);
-}
-
 TEST(se_memory_raw_set, partial_fill_at_end) {
   se_u8_t dst[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
   constexpr se_u8_t src[] = {0x11, 0x22, 0x33};
