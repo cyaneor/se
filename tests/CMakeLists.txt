@@ -11,6 +11,7 @@ enable_testing()
 # Создаём исполняемый файл для тестов
 add_executable(${PROJECT_NAME}
         src/error.cpp
+        src/memory_raw.cpp
         src/memory_view.cpp
         src/numeric_limits.cpp
 )
