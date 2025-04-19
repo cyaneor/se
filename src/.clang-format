@@ -4,6 +4,9 @@ AlignConsecutiveAssignments: Consecutive
 # Выравнивает объявления переменных и других объектов в последовательных строках по типу, если строки идут подряд.
 AlignConsecutiveDeclarations: Consecutive
 
+# Отключает сортировку директив `#include`.
+SortIncludes: Never
+
 # Разрешает перенос всех аргументов функции на следующую строку.
 AllowAllArgumentsOnNextLine: true
 
