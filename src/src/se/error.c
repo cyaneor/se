@@ -1,5 +1,7 @@
 #include <se/error.h>
+
 #include <se/runtime_check.h>
+#include <se/nullptr.h>
 
 se_error_code_t
 se_error_get_code(const se_error_t *self)
