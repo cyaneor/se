@@ -99,29 +99,29 @@ TEST(se_error, is_code_equal) {
   EXPECT_FALSE(se_error_is_code_equal(&err1, &err3));
 }
 
-// TEST(se_error, is_desc) {
-//   se_error_t err = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
-//   EXPECT_TRUE(se_error_is_desc(&err, "Test error"));
-//   EXPECT_FALSE(se_error_is_desc(&err, "Other error"));
-// }
-//
-// TEST(se_error, is_desc_equal) {
-//   se_error_t err1 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
-//   se_error_t err2 = {.code = SE_ERROR_CODE_NONE, .desc = "Test error"};
-//   EXPECT_TRUE(se_error_is_desc_equal(&err1, &err2));
-//   se_error_t err3 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Other
-//   error"}; EXPECT_FALSE(se_error_is_desc_equal(&err1, &err3));
-// }
-//
-// TEST(se_error, is_equal) {
-//   se_error_t err1 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
-//   se_error_t err2 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
-//   EXPECT_TRUE(se_error_is_equal(&err1, &err2));
-//   se_error_t err3 = {.code = SE_ERROR_CODE_NONE, .desc = "Test error"};
-//   EXPECT_FALSE(se_error_is_equal(&err1, &err3));
-//   se_error_t err4 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Other
-//   error"}; EXPECT_FALSE(se_error_is_equal(&err1, &err4));
-// }
+TEST(se_error, is_desc) {
+  se_error_t err = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
+  EXPECT_TRUE(se_error_is_desc(&err, "Test error"));
+  EXPECT_FALSE(se_error_is_desc(&err, "Other error"));
+}
+
+TEST(se_error, is_desc_equal) {
+  se_error_t err1 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
+  se_error_t err2 = {.code = SE_ERROR_CODE_NONE, .desc = "Test error"};
+  EXPECT_TRUE(se_error_is_desc_equal(&err1, &err2));
+  se_error_t err3 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Other error"};
+  EXPECT_FALSE(se_error_is_desc_equal(&err1, &err3));
+}
+
+TEST(se_error, is_equal) {
+  se_error_t err1 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
+  se_error_t err2 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Test error"};
+  EXPECT_TRUE(se_error_is_equal(&err1, &err2));
+  se_error_t err3 = {.code = SE_ERROR_CODE_NONE, .desc = "Test error"};
+  EXPECT_FALSE(se_error_is_equal(&err1, &err3));
+  se_error_t err4 = {.code = SE_ERROR_CODE_SOME_ERROR, .desc = "Other error"};
+  EXPECT_FALSE(se_error_is_equal(&err1, &err4));
+}
 
 TEST(se_error, is_ok) {
   se_error_t err = {.code = SE_ERROR_CODE_NONE, .desc = nullptr};
