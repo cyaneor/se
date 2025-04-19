@@ -1,10 +1,10 @@
 #include <se/memory_raw.h>
 
-#include <se/nullptr.h>
-#include <se/ptr_util.h>
-#include <se/runtime_check.h>
 #include <se/runtime_return_if.h>
+#include <se/runtime_check.h>
 #include <se/runtime_try.h>
+#include <se/ptr_util.h>
+#include <se/nullptr.h>
 #include <se/size.h>
 
 #if defined(SE_COMPILE_OPTION_AVX) || defined(SE_COMPILE_OPTION_AVX2)
@@ -385,13 +385,9 @@ se_memory_raw_find_from_end(const void *lhs,
 void *
 se_memory_raw_set(void *dst, const void *dst_end, const void *src, const void *src_end)
 {
-    se_runtime_try(e)
+    do
     {
-        do
-        {
-            dst = se_memory_raw_move(dst, dst_end, src, src_end);
-        } while (dst < dst_end);
-        se_runtime_try_return(dst);
-    }
-    se_runtime_rethrow();
+        dst = se_memory_raw_move(dst, dst_end, src, src_end);
+    } while (dst < dst_end && src < src_end);
+    return dst;
 }

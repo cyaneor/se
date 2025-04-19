@@ -30,12 +30,9 @@
  *
  * Упрощает вызов механизма обработки исключений,
  * позволяя указать параметры ошибки в виде списка инициализации структуры `se_error_t`.
+ * В DEBUG-сборках автоматически добавляет отладочную информацию (временную метку, файл, функцию).
  *
  * @param ... Аргументы для инициализации `se_error_t` (код ошибки и описание)
- * @note В DEBUG-сборках автоматически добавляет отладочную информацию:
- *       - Временную метку
- *       - Исходный файл
- *       - Имя функции
  *
  * @warning При отсутствии активных обработчиков исключений
  *          приводит к аварийному завершению программы.
@@ -49,11 +46,16 @@
  * se_runtime_throw(SE_ERROR_FILE_IO, "Failed to open file");
  * @endcode
  *
- * @see se_runtime_exception_catch_stack_throw_error()
- * @see se_runtime_exception_catch_stack_throw()
+ * @see se_runtime_exception_catch_stack_throw
  */
-#define se_runtime_throw(...)                                                                      \
-    se_runtime_exception_catch_stack_throw_error((se_error_t){__VA_ARGS__})
+#ifdef SE_COMPILE_OPTION_DEBUG
+#    define se_runtime_throw(...)                                                                  \
+        se_runtime_exception_catch_stack_throw(&(se_exception_t){                                  \
+            .err = {__VA_ARGS__}, .trace = {__TIMESTAMP__, __FILE__, __FUNCTION__}})
+#else
+#    define se_runtime_throw(...)                                                                  \
+        se_runtime_exception_catch_stack_throw(&(se_exception_t){.err = {__VA_ARGS__}})
+#endif // SE_COMPILE_OPTION_DEBUG
 
 /**
  * @def se_runtime_rethrow

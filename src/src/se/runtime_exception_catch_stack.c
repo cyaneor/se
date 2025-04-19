@@ -1,5 +1,7 @@
 #include <se/runtime_exception_catch_stack.h>
+
 #include <se/static_assert.h>
+#include <se/nullptr.h>
 
 se_static_assert(SE_RUNTIME_EXCEPTION_CATCH_STACK_MAX,
                  "SE_RUNTIME_EXCEPTION_CATCH_STACK_MAX must be greater than 0. "

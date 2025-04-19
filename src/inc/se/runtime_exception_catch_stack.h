@@ -17,7 +17,6 @@
 
 #include "bool.h"
 #include "exception_catch.h"
-#include "nullptr.h"
 #include "runtime_terminate.h"
 
 /**
@@ -204,40 +203,6 @@ se_runtime_exception_catch_stack_rethrow(void)
 {
     const se_exception_catch_t *cur = se_runtime_exception_catch_stack_get_current();
     se_runtime_exception_catch_stack_throw(&cur->exception);
-}
-
-/**
- * @brief Выбрасывает ошибку времени выполнения
- *        с дополнительной отладочной информацией.
- *
- * Вспомогательная функция-обёртка
- * для `se_runtime_exception_catch_stack_throw()`, которая:
- * 1. Создаёт объект исключения на основе кода ошибки
- * 2. В отладочных сборках (`DEBUG`) сохраняет дополнительный контекст:
- *    - Временную метку момента возникновения ошибки
- *    - Исходный файл, где произошла ошибка
- *    - Имя функции, где произошла ошибка
- * 3. Делегирует вызов основному механизму выбрасывания исключений
- *
- * @param err Код ошибки для выбрасывания (тип `se_error_t`)
- *
- * @note `FORCE_INLINE` гарантирует минимальные накладные расходы для критичного пути обработки
- * ошибок.
- * @note Отладочная информация собирается только при определённом `SE_COMPILE_OPTION_DEBUG`.
- * @warning Как и все операции выбрасывания, требует соответствующего обработчика исключений.
- * @warning При отсутствии обработчика приведёт к завершению работы рантайма.
- */
-SE_ATTRIBUTE(FORCE_INLINE)
-SE_ATTRIBUTE(NORETURN)
-void
-se_runtime_exception_catch_stack_throw_error(se_error_t err)
-{
-#ifdef SE_COMPILE_OPTION_DEBUG
-    const se_exception_t e = {.err = err, .trace = {__TIMESTAMP__, __FILE__, __FUNCTION__}};
-#else
-    const se_exception_t e = {.err = err};
-#endif // SE_COMPILE_OPTION_DEBUG
-    se_runtime_exception_catch_stack_throw(&e);
 }
 
 SE_COMPILER(EXTERN_C_END)
