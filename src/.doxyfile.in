@@ -1,0 +1,62 @@
+# Set this option to YES to generate documentation.
+GENERATE_DOCSET             = NO
+
+# Set this option to YES to generate HTML documentation.
+GENERATE_HTML               = YES
+
+# Set this option to YES to generate LATEX output.
+GENERATE_LATEX              = NO
+
+# Set this option to YES to generate documentation only for public members of the class.
+EXTRACT_PRIVATE             = NO
+
+# Set this option to YES to enable documentation for subelements.
+RECURSIVE                   = YES
+
+# Set this option to YES to enable internal methods and functions.
+EXTRACT_ALL                 = YES
+
+# Provide paths to your source code.
+INPUT                       = @SE_TARGET_INCLUDE_DIR@
+
+# Set the filter to include only files .h extensions.
+FILE_PATTERNS               = *.h
+
+# Enable the use of the markdown file as the main page for the documentation.
+USE_MDFILE_AS_MAINPAGE      = YES
+
+# Specify where the documentation will be created.
+OUTPUT_DIRECTORY            = @SE_CMAKE_CURRENT_SOURCE_DIR@/docs
+
+# Provide a title for your project.
+PROJECT_NAME                = @PROJECT_NAME@
+
+# Provide your project name to generate the QHG code.
+PROJECT_NUMBER              = @PROJECT_VERSION@
+
+# Brief description of the project.
+PROJECT_BRIEF               = @PROJECT_DESCRIPTION@
+
+# Set this option to YES to generate documentation for internal classes.
+INTERNAL_DOCS               = NO
+
+# Set this option to YES to add a list of all files to the documentation.
+FULL_PATH_NAMES             = YES
+
+# Set this option to YES to include only public class members in the documentation.
+EXTRACT_ALL                 = YES
+
+# Set this option to YES to enable the use of Graphviz Dot for graph generation.
+HAVE_DOT                    = YES
+
+# Set this option to YES to generate function call graphs.
+CALL_GRAPH                  = YES
+
+# Set this option to YES to generate graphs showing which functions call each other.
+CALLER_GRAPH                = YES
+
+# Set this option to YES to generate include dependency graphs for files.
+INCLUDE_GRAPH               = YES
+
+# Set this option to YES to generate graphs showing which files include each other.
+INCLUDED_BY_GRAPH           = YES

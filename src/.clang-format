@@ -1,0 +1,71 @@
+# Выравнивает присвоения в последовательных строках по знаку `=`, если строки идут подряд.
+AlignConsecutiveAssignments: Consecutive
+
+# Выравнивает объявления переменных и других объектов в последовательных строках по типу, если строки идут подряд.
+AlignConsecutiveDeclarations: Consecutive
+
+# Отключает сортировку директив `#include`.
+SortIncludes: Never
+
+# Разрешает перенос всех аргументов функции на следующую строку.
+AllowAllArgumentsOnNextLine: true
+
+# Запрещает перенос всех параметров объявления на новую строку.
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# Запрещает короткие блоки (например, `if` или `for`) на одной строке, даже если они помещаются.
+AllowShortBlocksOnASingleLine: Never
+
+# Запрещает размещать метки `case` на одной строке.
+AllowShortCaseLabelsOnASingleLine: false
+
+# Запрещает короткие функции (короче 1 строки) на одной строке.
+AllowShortFunctionsOnASingleLine: None
+
+# Всегда добавляет перенос строки после типа возвращаемого значения функции при определении.
+AlwaysBreakAfterDefinitionReturnType: All
+
+# Всегда добавляет перенос строки после типа возвращаемого значения функции при объявлении.
+AlwaysBreakAfterReturnType: All
+
+# Добавляет перенос строки после заголовка шаблона (например, после `template<>`).
+AlwaysBreakTemplateDeclarations: Yes
+
+# Запрещает упаковку аргументов функции на одну строку, если возможно.
+BinPackArguments: false
+
+# Запрещает упаковку параметров функции на одну строку, если возможно.
+BinPackParameters: false
+
+# Не добавляет перенос строки перед бинарными операторами.
+BreakBeforeBinaryOperators: None
+
+# Размещает открывающую фигурную скобку на новой строке (стиль Allman).
+BreakBeforeBraces: Allman
+
+# Устанавливает максимальную длину строки в 100 символов.
+ColumnLimit: 100
+
+# Отключает автоматическое определение упаковки аргументов и параметров.
+ExperimentalAutoDetectBinPacking: false
+
+# Не добавляет отступ перед блоком `extern`.
+IndentExternBlock: NoIndent
+
+# Устанавливает отступ для препроцессорных директив сразу после `#`.
+IndentPPDirectives: AfterHash
+
+# Устанавливает ширину отступа на 4 пробела.
+IndentWidth: 4
+
+# Не упаковывает инициализаторы конструктора на одну строку.
+PackConstructorInitializers: Never
+
+# Разрешает автоформатирование длинных комментариев, чтобы они соответствовали ширине строки.
+ReflowComments: true
+
+# Устанавливает ширину табуляции в 4 пробела (при использовании табуляции, но она отключена).
+TabWidth: 4
+
+# Использует пробелы вместо табуляций для отступов.
+UseTab: Never
