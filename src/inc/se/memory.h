@@ -59,7 +59,7 @@ se_memory_copy(void *dst, se_usize_t dst_size, const void *src, se_usize_t src_s
  */
 SE_ATTRIBUTE(SYMBOL)
 void *
-se_memory_copy_reverse(void *dst, se_usize_t dst_size, const void *src, se_usize_t src_size);
+se_memory_copy_rev(void *dst, se_usize_t dst_size, const void *src, se_usize_t src_size);
 
 /**
  * @brief Перемещает данные между буферами с проверкой размеров.
@@ -108,10 +108,7 @@ se_memory_compare(const void *lhs, se_usize_t lhs_size, const void *rhs, se_usiz
  */
 SE_ATTRIBUTE(SYMBOL)
 const void *
-se_memory_compare_reverse(const void *lhs,
-                          se_usize_t  lhs_size,
-                          const void *rhs,
-                          se_usize_t  rhs_size);
+se_memory_compare_rev(const void *lhs, se_usize_t lhs_size, const void *rhs, se_usize_t rhs_size);
 
 /**
  * @brief Ищет подблок в памяти с проверкой размеров.
@@ -130,7 +127,8 @@ const void *
 se_memory_find(const void *lhs, se_usize_t lhs_size, const void *rhs, se_usize_t rhs_size);
 
 /**
- * @brief Ищет подблок в памяти с конца с проверкой размеров.
+ * @brief Ищет подблок в памяти
+ *        с конца с проверкой размеров.
  *
  * Аналогична `se_memory_find`,
  * но поиск выполняется от конца к началу.
@@ -143,23 +141,39 @@ se_memory_find(const void *lhs, se_usize_t lhs_size, const void *rhs, se_usize_t
  */
 SE_ATTRIBUTE(SYMBOL)
 const void *
-se_memory_find_from_end(const void *lhs, se_usize_t lhs_size, const void *rhs, se_usize_t rhs_size);
+se_memory_find_rev(const void *lhs, se_usize_t lhs_size, const void *rhs, se_usize_t rhs_size);
 
 /**
- * @brief Заполняет блок памяти данными с проверкой размеров.
+ * @brief Повторяет блок памяти
+ *        в целевом блоке с проверкой размеров.
  *
- * Заполняет блок `dst` повторяющимися копиями блока `src`,
- * проверяя что `dst_size` кратно `src_size`.
+ * Аналогична `se_memory_raw_repeat`,
+ * но принимает размеры блоков вместо конечных указателей.
  *
- * @param dst Указатель на блок памяти для заполнения
- * @param dst_size Размер блока для заполнения
- * @param src Указатель на блок-шаблон
- * @param src_size Размер блока-шаблона
- * @return Указатель на `dst` в случае успеха, `NULL` если размеры недопустимы
+ * @param dst Указатель на целевой блок памяти
+ * @param dst_size Размер целевого блока
+ * @param src Указатель на блок-источник для повторения
+ * @param src_size Размер блока-источника
+ * @return Указатель на целевой блок памяти
  */
 SE_ATTRIBUTE(SYMBOL)
 void *
-se_memory_set(void *dst, se_usize_t dst_size, const void *src, se_usize_t src_size);
+se_memory_repeat(void *dst, se_usize_t dst_size, const void *src, se_usize_t src_size);
+
+/**
+ * @brief Заполняет блок памяти указанным значением.
+ *
+ * Аналогична `se_memory_std_set`,
+ * выполняет заполнение памяти заданным байтовым значением.
+ *
+ * @param dst Указатель на целевой блок памяти
+ * @param len Размер блока памяти в байтах
+ * @param val Значение для заполнения (байт)
+ * @return Указатель на целевой блок памяти
+ */
+SE_ATTRIBUTE(SYMBOL)
+void *
+se_memory_set(void *dst, se_usize_t len, se_u8_t val);
 
 SE_COMPILER(EXTERN_C_END)
 

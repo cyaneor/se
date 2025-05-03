@@ -21,13 +21,14 @@
  * @see se_memory_raw_move
  * @see se_memory_raw_compare
  * @see se_memory_raw_find
- * @see se_memory_raw_set
+ * @see se_memory_raw_repeat
  */
 
 #ifndef SE_MEMORY_RAW_H
 #define SE_MEMORY_RAW_H
 
 #include "attribute.h"
+#include "numeric_fixed.h"
 
 SE_COMPILER(EXTERN_C_BEGIN)
 
@@ -72,7 +73,7 @@ se_memory_raw_copy(void *dst, const void *dst_end, const void *src, const void *
  */
 SE_ATTRIBUTE(SYMBOL)
 void *
-se_memory_raw_copy_from_end(void *dst, const void *dst_end, const void *src, const void *src_end);
+se_memory_raw_copy_rev(void *dst, const void *dst_end, const void *src, const void *src_end);
 
 /**
  * @brief Перемещает блок памяти из одной области в другую.
@@ -144,10 +145,10 @@ se_memory_raw_compare(const void *lhs, const void *lhs_end, const void *rhs, con
  */
 SE_ATTRIBUTE(SYMBOL)
 const void *
-se_memory_raw_compare_from_end(const void *lhs,
-                               const void *lhs_end,
-                               const void *rhs,
-                               const void *rhs_end);
+se_memory_raw_compare_rev(const void *lhs,
+                          const void *lhs_end,
+                          const void *rhs,
+                          const void *rhs_end);
 
 /**
  * @brief Ищет блок памяти в другом блоке памяти.
@@ -191,10 +192,11 @@ se_memory_raw_find(const void *lhs, const void *lhs_end, const void *rhs, const 
  */
 SE_ATTRIBUTE(SYMBOL)
 const void *
-se_memory_raw_find_from_end(const void *lhs,
-                            const void *lhs_end,
-                            const void *rhs,
-                            const void *rhs_end);
+se_memory_raw_find_rev(const void *lhs, const void *lhs_end, const void *rhs, const void *rhs_end);
+
+SE_ATTRIBUTE(SYMBOL)
+void *
+se_memory_raw_set(void *dst, const void *dst_end, se_u8_t val);
 
 /**
  * @brief Заполняет данными из одного блока памяти в другой.
@@ -217,7 +219,7 @@ se_memory_raw_find_from_end(const void *lhs,
  */
 SE_ATTRIBUTE(SYMBOL)
 void *
-se_memory_raw_set(void *dst, const void *dst_end, const void *src, const void *src_end);
+se_memory_raw_repeat(void *dst, const void *dst_end, const void *src, const void *src_end);
 
 SE_COMPILER(EXTERN_C_END)
 
